@@ -25,51 +25,132 @@
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
 
-namespace Proyecto__1_Datos_2 {
+namespace Proyecto1Datos2 {
 
-class Greeter final {
+// Definición del servicio GRPC
+class MemoryManager final {
  public:
   static constexpr char const* service_full_name() {
-    return "Proyecto__1_Datos_2.Greeter";
+    return "Proyecto1Datos2.MemoryManager";
   }
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::Proyecto__1_Datos_2::HelloReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>> AsyncSayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>>(AsyncSayHelloRaw(context, request, cq));
+    virtual ::grpc::Status Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::Proyecto1Datos2::CreateResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>> PrepareAsyncSayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>>(PrepareAsyncSayHelloRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::Proyecto1Datos2::SetResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>> AsyncSet(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>> PrepareAsyncSet(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::Proyecto1Datos2::GetResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>> AsyncGet(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>> PrepareAsyncGet(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    virtual ::grpc::Status IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::Proyecto1Datos2::RefCountResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>> AsyncIncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>>(AsyncIncreaseRefCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncIncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncIncreaseRefCountRaw(context, request, cq));
+    }
+    virtual ::grpc::Status DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::Proyecto1Datos2::RefCountResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>> AsyncDecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>>(AsyncDecreaseRefCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncDecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncDecreaseRefCountRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>* AsyncSayHelloRaw(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto__1_Datos_2::HelloReply>* PrepareAsyncSayHelloRaw(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>* AsyncSetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::SetResponse>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>* AsyncGetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::GetResponse>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* AsyncIncreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncIncreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* AsyncDecreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncDecreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::Proyecto__1_Datos_2::HelloReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>> AsyncSayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>>(AsyncSayHelloRaw(context, request, cq));
+    ::grpc::Status Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::Proyecto1Datos2::CreateResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>> AsyncCreate(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>>(AsyncCreateRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>> PrepareAsyncSayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>>(PrepareAsyncSayHelloRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>> PrepareAsyncCreate(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>>(PrepareAsyncCreateRaw(context, request, cq));
+    }
+    ::grpc::Status Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::Proyecto1Datos2::SetResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>> AsyncSet(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>>(AsyncSetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>> PrepareAsyncSet(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>>(PrepareAsyncSetRaw(context, request, cq));
+    }
+    ::grpc::Status Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::Proyecto1Datos2::GetResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>> AsyncGet(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>>(AsyncGetRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>> PrepareAsyncGet(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>>(PrepareAsyncGetRaw(context, request, cq));
+    }
+    ::grpc::Status IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::Proyecto1Datos2::RefCountResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>> AsyncIncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>>(AsyncIncreaseRefCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncIncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncIncreaseRefCountRaw(context, request, cq));
+    }
+    ::grpc::Status DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::Proyecto1Datos2::RefCountResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>> AsyncDecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>>(AsyncDecreaseRefCountRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncDecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncDecreaseRefCountRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response, std::function<void(::grpc::Status)>) override;
-      void SayHello(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response, std::function<void(::grpc::Status)>) override;
+      void Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response, std::function<void(::grpc::Status)>) override;
+      void Set(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response, std::function<void(::grpc::Status)>) override;
+      void Get(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) override;
+      void IncreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) override;
+      void DecreaseRefCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -81,9 +162,21 @@ class Greeter final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>* AsyncSayHelloRaw(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Proyecto__1_Datos_2::HelloReply>* PrepareAsyncSayHelloRaw(::grpc::ClientContext* context, const ::Proyecto__1_Datos_2::HelloRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_SayHello_;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>* AsyncCreateRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::CreateResponse>* PrepareAsyncCreateRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>* AsyncSetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::SetResponse>* PrepareAsyncSetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::SetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>* AsyncGetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::GetResponse>* PrepareAsyncGetRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::GetRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* AsyncIncreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncIncreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* AsyncDecreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncDecreaseRefCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Create_;
+    const ::grpc::internal::RpcMethod rpcmethod_Set_;
+    const ::grpc::internal::RpcMethod rpcmethod_Get_;
+    const ::grpc::internal::RpcMethod rpcmethod_IncreaseRefCount_;
+    const ::grpc::internal::RpcMethod rpcmethod_DecreaseRefCount_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -91,150 +184,686 @@ class Greeter final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status SayHello(::grpc::ServerContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response);
+    virtual ::grpc::Status Create(::grpc::ServerContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response);
+    virtual ::grpc::Status Set(::grpc::ServerContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response);
+    virtual ::grpc::Status Get(::grpc::ServerContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response);
+    virtual ::grpc::Status IncreaseRefCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response);
+    virtual ::grpc::Status DecreaseRefCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_SayHello : public BaseClass {
+  class WithAsyncMethod_Create : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_SayHello() {
+    WithAsyncMethod_Create() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_SayHello() override {
+    ~WithAsyncMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSayHello(::grpc::ServerContext* context, ::Proyecto__1_Datos_2::HelloRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto__1_Datos_2::HelloReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestCreate(::grpc::ServerContext* context, ::Proyecto1Datos2::CreateRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::CreateResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_SayHello<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_SayHello : public BaseClass {
+  class WithAsyncMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_SayHello() {
+    WithAsyncMethod_Set() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::Proyecto1Datos2::SetRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::SetResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Get() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::Proyecto1Datos2::GetRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::GetResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIncreaseRefCount(::grpc::ServerContext* context, ::Proyecto1Datos2::RefCountRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::RefCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodAsync(4);
+    }
+    ~WithAsyncMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDecreaseRefCount(::grpc::ServerContext* context, ::Proyecto1Datos2::RefCountRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::RefCountResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_Set<WithAsyncMethod_Get<WithAsyncMethod_IncreaseRefCount<WithAsyncMethod_DecreaseRefCount<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Create() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto__1_Datos_2::HelloRequest, ::Proyecto__1_Datos_2::HelloReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::CreateRequest, ::Proyecto1Datos2::CreateResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::Proyecto__1_Datos_2::HelloRequest* request, ::Proyecto__1_Datos_2::HelloReply* response) { return this->SayHello(context, request, response); }));}
-    void SetMessageAllocatorFor_SayHello(
-        ::grpc::MessageAllocator< ::Proyecto__1_Datos_2::HelloRequest, ::Proyecto__1_Datos_2::HelloReply>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::CreateRequest* request, ::Proyecto1Datos2::CreateResponse* response) { return this->Create(context, request, response); }));}
+    void SetMessageAllocatorFor_Create(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::CreateRequest, ::Proyecto1Datos2::CreateResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto__1_Datos_2::HelloRequest, ::Proyecto__1_Datos_2::HelloReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::CreateRequest, ::Proyecto1Datos2::CreateResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_SayHello() override {
+    ~WithCallbackMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SayHello(
-      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Create(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_SayHello<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::SetRequest, ::Proyecto1Datos2::SetResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::SetRequest* request, ::Proyecto1Datos2::SetResponse* response) { return this->Set(context, request, response); }));}
+    void SetMessageAllocatorFor_Set(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::SetRequest, ::Proyecto1Datos2::SetResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::SetRequest, ::Proyecto1Datos2::SetResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::GetRequest, ::Proyecto1Datos2::GetResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::GetRequest* request, ::Proyecto1Datos2::GetResponse* response) { return this->Get(context, request, response); }));}
+    void SetMessageAllocatorFor_Get(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::GetRequest, ::Proyecto1Datos2::GetResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::GetRequest, ::Proyecto1Datos2::GetResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response) { return this->IncreaseRefCount(context, request, response); }));}
+    void SetMessageAllocatorFor_IncreaseRefCount(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IncreaseRefCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithCallbackMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response) { return this->DecreaseRefCount(context, request, response); }));}
+    void SetMessageAllocatorFor_DecreaseRefCount(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(4);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DecreaseRefCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Create<WithCallbackMethod_Set<WithCallbackMethod_Get<WithCallbackMethod_IncreaseRefCount<WithCallbackMethod_DecreaseRefCount<Service > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_SayHello : public BaseClass {
+  class WithGenericMethod_Create : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_SayHello() {
+    WithGenericMethod_Create() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_SayHello() override {
+    ~WithGenericMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_SayHello : public BaseClass {
+  class WithGenericMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_SayHello() {
-      ::grpc::Service::MarkMethodRaw(0);
+    WithGenericMethod_Set() {
+      ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithRawMethod_SayHello() override {
+    ~WithGenericMethod_Set() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestSayHello(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Get() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodGeneric(4);
+    }
+    ~WithGenericMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Create() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Create() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCreate(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_SayHello : public BaseClass {
+  class WithRawMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_SayHello() {
+    WithRawMethod_Set() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestSet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Get() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGet(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestIncreaseRefCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodRaw(4);
+    }
+    ~WithRawMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDecreaseRefCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Create() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->SayHello(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Create(context, request, response); }));
     }
-    ~WithRawCallbackMethod_SayHello() override {
+    ~WithRawCallbackMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* SayHello(
+    virtual ::grpc::ServerUnaryReactor* Create(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_SayHello : public BaseClass {
+  class WithRawCallbackMethod_Set : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_SayHello() {
+    WithRawCallbackMethod_Set() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Set(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Set(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Get() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Get(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Get(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodRawCallback(3,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->IncreaseRefCount(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* IncreaseRefCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodRawCallback(4,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->DecreaseRefCount(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* DecreaseRefCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Create : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Create() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::Proyecto__1_Datos_2::HelloRequest, ::Proyecto__1_Datos_2::HelloReply>(
+          ::Proyecto1Datos2::CreateRequest, ::Proyecto1Datos2::CreateResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::Proyecto__1_Datos_2::HelloRequest, ::Proyecto__1_Datos_2::HelloReply>* streamer) {
-                       return this->StreamedSayHello(context,
+                     ::Proyecto1Datos2::CreateRequest, ::Proyecto1Datos2::CreateResponse>* streamer) {
+                       return this->StreamedCreate(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_SayHello() override {
+    ~WithStreamedUnaryMethod_Create() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status SayHello(::grpc::ServerContext* /*context*/, const ::Proyecto__1_Datos_2::HelloRequest* /*request*/, ::Proyecto__1_Datos_2::HelloReply* /*response*/) override {
+    ::grpc::Status Create(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::CreateRequest* /*request*/, ::Proyecto1Datos2::CreateResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedSayHello(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto__1_Datos_2::HelloRequest,::Proyecto__1_Datos_2::HelloReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedCreate(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::CreateRequest,::Proyecto1Datos2::CreateResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_SayHello<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Set : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Set() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Proyecto1Datos2::SetRequest, ::Proyecto1Datos2::SetResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Proyecto1Datos2::SetRequest, ::Proyecto1Datos2::SetResponse>* streamer) {
+                       return this->StreamedSet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Set() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Set(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::SetRequest* /*request*/, ::Proyecto1Datos2::SetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedSet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::SetRequest,::Proyecto1Datos2::SetResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Get : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Get() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Proyecto1Datos2::GetRequest, ::Proyecto1Datos2::GetResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Proyecto1Datos2::GetRequest, ::Proyecto1Datos2::GetResponse>* streamer) {
+                       return this->StreamedGet(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Get() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Get(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::GetRequest* /*request*/, ::Proyecto1Datos2::GetResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedGet(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::GetRequest,::Proyecto1Datos2::GetResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_IncreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_IncreaseRefCount() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>* streamer) {
+                       return this->StreamedIncreaseRefCount(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_IncreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status IncreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedIncreaseRefCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::RefCountRequest,::Proyecto1Datos2::RefCountResponse>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_DecreaseRefCount : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_DecreaseRefCount() {
+      ::grpc::Service::MarkMethodStreamed(4,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse>* streamer) {
+                       return this->StreamedDecreaseRefCount(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_DecreaseRefCount() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status DecreaseRefCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDecreaseRefCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::RefCountRequest,::Proyecto1Datos2::RefCountResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<Service > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_SayHello<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<Service > > > > > StreamedService;
 };
 
-}  // namespace Proyecto__1_Datos_2
+}  // namespace Proyecto1Datos2
 
 
 #endif  // GRPC_GRPC_2dMemorymanager_2eproto__INCLUDED

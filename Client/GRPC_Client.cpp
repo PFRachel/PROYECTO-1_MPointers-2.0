@@ -1,50 +1,26 @@
-//
-// Created by Rachel on 08/03/2025.
-//
-
+// GRPC_Client.cpp
 #include "GRPC_Client.h"
 #include <iostream>
-#include <memory>
-#include <string>
 
-#include <grpcpp/grpcpp.h>
-#include "GRPC-Memorymanager.grpc.pb.h"
+MemoryManagerClient::MemoryManagerClient(std::shared_ptr<grpc::Channel> channel)
+    : stub_(Proyecto1Datos2::MemoryManager::NewStub(channel)) {}
 
-using grpc::Channel;
-using grpc::ClientContext;
-using grpc::Status;
-using Proyecto__1_Datos_2::Greeter;
-using Proyecto__1_Datos_2::HelloRequest;
-using Proyecto__1_Datos_2::HelloReply;
+std::string MemoryManagerClient::Create(int size, const std::string& type) {
+    Proyecto1Datos2::CreateRequest request;
+    request.set_size(size);
+    request.set_type(type);
 
-class GreeterClient {
-public:
-    GreeterClient(std::shared_ptr<Channel> channel) : stub_(Greeter::NewStub(channel)) {}
+    Proyecto1Datos2::CreateResponse response;
+    grpc::ClientContext context;
 
-    std::string SayHello(const std::string& user) {
-        HelloRequest request;
-        request.set_name(user);
+    // Llamada al método gRPC
 
-        HelloReply reply;
-        ClientContext context;
+    grpc::Status status = stub_->Create(&context, request, &response);
 
-        Status status = stub_->SayHello(&context, request, &reply);
-
-        if (status.ok()) {
-            return reply.message();
-        } else {
-            return "RPC failed";
-        }
+    if (status.ok()) {
+        // Aquí debes acceder al campo adecuado
+        return "Servidor responde con ID: " + std::to_string(response.id());
+    } else {
+        return "Error al conectar con el servidor";
     }
-
-private:
-    std::unique_ptr<Greeter::Stub> stub_;
-};
-
-int main() {
-    GreeterClient client(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
-    std::string response = client.SayHello("World");
-    std::cout << "Greeter received: " << response << std::endl;
-    return 0;
-
 }

@@ -1,15 +1,48 @@
 syntax = "proto3";
 
-package Proyecto__1_Datos_2;
+package Proyecto1Datos2;
 
-service Greeter {
-  rpc SayHello (HelloRequest) returns (HelloReply);
+// Definición del servicio GRPC
+service MemoryManager {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Set(SetRequest) returns (SetResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc IncreaseRefCount(RefCountRequest) returns (RefCountResponse);
+  rpc DecreaseRefCount(RefCountRequest) returns (RefCountResponse);
 }
 
-message HelloRequest {
-  string name = 1;
+// Mensajes de solicitud y respuesta
+
+message CreateRequest {
+  int32 size = 1;
+  string type = 2;
 }
 
-message HelloReply {
-  string message = 1;
+message CreateResponse {
+  int32 id = 1;
+}
+
+message SetRequest {
+  int32 id = 1;
+  string value = 2;
+}
+
+message SetResponse {
+  bool success = 1;
+}
+
+message GetRequest {
+  int32 id = 1;
+}
+
+message GetResponse {
+  string value = 1;
+}
+
+message RefCountRequest {
+  int32 id = 1;
+}
+
+message RefCountResponse {
+  bool success = 1;
 }
