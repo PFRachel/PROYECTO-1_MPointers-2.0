@@ -1,0 +1,26 @@
+# Archivos generados por CLion
+.idea/
+cmake-build-*/
+
+# Caché de CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+CMakeLists.txt.user
+CMakeLists.txt.user.*
+
+# Archivos de compilación y ejecutables
+*.obj
+*.o
+*.so
+*.dylib
+*.dll
+*.lib
+*.a
+*.exe
+*.out
+*.app
+*.pdb
+*.ilk
