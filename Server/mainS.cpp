@@ -8,7 +8,7 @@
 
 int main(int argc, char* argv[]) {
     if (argc != 7) {
-        std::cerr << "Uso: (./mem-mgr)./server.exe --port LISTEN_PORT --memsize SIZE_MB --dumpFolder DUMP_FOLDER" << std::endl;
+        std::cerr << "Uso:./mem-mgr --port LISTEN_PORT --memsize SIZE_MB --dumpFolder DUMP_FOLDER" << std::endl;
         return 1;
     }
 
@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
     }
     // Verificar que todos los argumentos fueron recibidos correctamente
     if (port == 0 || memsize == 0 || dumpFolder.empty()) {
-        std::cerr << "Faltan argumentos. Uso: ./server --port LISTEN_PORT --memsize SIZE_MB --dumpFolder DUMP_FOLDER" << std::endl;
+        std::cerr << "Faltan argumentos. Uso: ./mem-mgr --port LISTEN_PORT --memsize SIZE_MB --dumpFolder DUMP_FOLDER" << std::endl;
         return 1;
     }
 

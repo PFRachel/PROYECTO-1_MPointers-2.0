@@ -12,7 +12,7 @@ public:
     explicit MemoryManagerClient(std::shared_ptr<grpc::Channel> channel);
 
     // Método para crear un objeto en el servidor
-    std::string Create(int size, const std::string& type);
+    std::string Create(int size, int id);
 
 private:
     // Stub para las operaciones de gRPC (cliente)

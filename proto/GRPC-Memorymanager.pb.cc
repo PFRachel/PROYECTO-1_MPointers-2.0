@@ -208,9 +208,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 
 inline constexpr CreateRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : type_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
+      : id_{0},
         size_{0},
         _cached_size_{0} {}
 
@@ -249,8 +247,8 @@ const ::uint32_t
         ~0u,  // no _inlined_string_donated_
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::CreateRequest, _impl_.id_),
         PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::CreateRequest, _impl_.size_),
-        PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::CreateRequest, _impl_.type_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::CreateResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -341,30 +339,30 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_GRPC_2dMemorymanager_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\030GRPC-Memorymanager.proto\022\017Proyecto1Dat"
-    "os2\"+\n\rCreateRequest\022\014\n\004size\030\001 \001(\005\022\014\n\004ty"
-    "pe\030\002 \001(\t\"\034\n\016CreateResponse\022\n\n\002id\030\001 \001(\005\"\'"
-    "\n\nSetRequest\022\n\n\002id\030\001 \001(\005\022\r\n\005value\030\002 \001(\t\""
-    "\036\n\013SetResponse\022\017\n\007success\030\001 \001(\010\"\030\n\nGetRe"
-    "quest\022\n\n\002id\030\001 \001(\005\"\034\n\013GetResponse\022\r\n\005valu"
-    "e\030\001 \001(\t\"\035\n\017RefCountRequest\022\n\n\002id\030\001 \001(\005\"#"
-    "\n\020RefCountResponse\022\017\n\007success\030\001 \001(\0102\220\003\n\r"
-    "MemoryManager\022I\n\006Create\022\036.Proyecto1Datos"
-    "2.CreateRequest\032\037.Proyecto1Datos2.Create"
-    "Response\022@\n\003Set\022\033.Proyecto1Datos2.SetReq"
-    "uest\032\034.Proyecto1Datos2.SetResponse\022@\n\003Ge"
-    "t\022\033.Proyecto1Datos2.GetRequest\032\034.Proyect"
-    "o1Datos2.GetResponse\022W\n\020IncreaseRefCount"
-    "\022 .Proyecto1Datos2.RefCountRequest\032!.Pro"
-    "yecto1Datos2.RefCountResponse\022W\n\020Decreas"
-    "eRefCount\022 .Proyecto1Datos2.RefCountRequ"
-    "est\032!.Proyecto1Datos2.RefCountResponseb\006"
-    "proto3"
+    "os2\")\n\rCreateRequest\022\n\n\002id\030\001 \001(\005\022\014\n\004size"
+    "\030\002 \001(\005\"\034\n\016CreateResponse\022\n\n\002id\030\001 \001(\005\"\'\n\n"
+    "SetRequest\022\n\n\002id\030\001 \001(\005\022\r\n\005value\030\002 \001(\t\"\036\n"
+    "\013SetResponse\022\017\n\007success\030\001 \001(\010\"\030\n\nGetRequ"
+    "est\022\n\n\002id\030\001 \001(\005\"\034\n\013GetResponse\022\r\n\005value\030"
+    "\001 \001(\t\"\035\n\017RefCountRequest\022\n\n\002id\030\001 \001(\005\"#\n\020"
+    "RefCountResponse\022\017\n\007success\030\001 \001(\0102\220\003\n\rMe"
+    "moryManager\022I\n\006Create\022\036.Proyecto1Datos2."
+    "CreateRequest\032\037.Proyecto1Datos2.CreateRe"
+    "sponse\022@\n\003Set\022\033.Proyecto1Datos2.SetReque"
+    "st\032\034.Proyecto1Datos2.SetResponse\022@\n\003Get\022"
+    "\033.Proyecto1Datos2.GetRequest\032\034.Proyecto1"
+    "Datos2.GetResponse\022W\n\020IncreaseRefCount\022 "
+    ".Proyecto1Datos2.RefCountRequest\032!.Proye"
+    "cto1Datos2.RefCountResponse\022W\n\020DecreaseR"
+    "efCount\022 .Proyecto1Datos2.RefCountReques"
+    "t\032!.Proyecto1Datos2.RefCountResponseb\006pr"
+    "oto3"
 };
 static ::absl::once_flag descriptor_table_GRPC_2dMemorymanager_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_GRPC_2dMemorymanager_2eproto = {
     false,
     false,
-    726,
+    724,
     descriptor_table_protodef_GRPC_2dMemorymanager_2eproto,
     "GRPC-Memorymanager.proto",
     &descriptor_table_GRPC_2dMemorymanager_2eproto_once,
@@ -393,38 +391,24 @@ CreateRequest::CreateRequest(::google::protobuf::Arena* arena)
   SharedCtor(arena);
   // @@protoc_insertion_point(arena_constructor:Proyecto1Datos2.CreateRequest)
 }
-inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
-    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
-    const Impl_& from, const ::Proyecto1Datos2::CreateRequest& from_msg)
-      : type_(arena, from.type_),
-        _cached_size_{0} {}
-
 CreateRequest::CreateRequest(
-    ::google::protobuf::Arena* arena,
-    const CreateRequest& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, _class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  CreateRequest* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.size_ = from._impl_.size_;
-
-  // @@protoc_insertion_point(copy_constructor:Proyecto1Datos2.CreateRequest)
+    ::google::protobuf::Arena* arena, const CreateRequest& from)
+    : CreateRequest(arena) {
+  MergeFrom(from);
 }
 inline PROTOBUF_NDEBUG_INLINE CreateRequest::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : type_(arena),
-        _cached_size_{0} {}
+      : _cached_size_{0} {}
 
 inline void CreateRequest::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.size_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, id_),
+           0,
+           offsetof(Impl_, size_) -
+               offsetof(Impl_, id_) +
+               sizeof(Impl_::size_));
 }
 CreateRequest::~CreateRequest() {
   // @@protoc_insertion_point(destructor:Proyecto1Datos2.CreateRequest)
@@ -434,7 +418,6 @@ inline void CreateRequest::SharedDtor(MessageLite& self) {
   CreateRequest& this_ = static_cast<CreateRequest&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.type_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -443,7 +426,7 @@ inline void* CreateRequest::PlacementNew_(const void*, void* mem,
   return ::new (mem) CreateRequest(arena);
 }
 constexpr auto CreateRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(CreateRequest),
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(CreateRequest),
                                             alignof(CreateRequest));
 }
 PROTOBUF_CONSTINIT
@@ -474,7 +457,7 @@ const ::google::protobuf::internal::ClassData* CreateRequest::GetClassData() con
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 2, 0, 42, 2> CreateRequest::_table_ = {
+const ::_pbi::TcParseTable<1, 2, 0, 0, 2> CreateRequest::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
@@ -492,27 +475,24 @@ const ::_pbi::TcParseTable<1, 2, 0, 42, 2> CreateRequest::_table_ = {
     ::_pbi::TcParser::GetTable<::Proyecto1Datos2::CreateRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // string type = 2;
-    {::_pbi::TcParser::FastUS1,
-     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.type_)}},
-    // int32 size = 1;
+    // int32 size = 2;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CreateRequest, _impl_.size_), 63>(),
-     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.size_)}},
+     {16, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.size_)}},
+    // int32 id = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(CreateRequest, _impl_.id_), 63>(),
+     {8, 63, 0, PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.id_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // int32 size = 1;
+    // int32 id = 1;
+    {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.id_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
+    // int32 size = 2;
     {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.size_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kInt32)},
-    // string type = 2;
-    {PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.type_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\35\0\4\0\0\0\0\0"
-    "Proyecto1Datos2.CreateRequest"
-    "type"
   }},
 };
 
@@ -523,8 +503,9 @@ PROTOBUF_NOINLINE void CreateRequest::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.type_.ClearToEmpty();
-  _impl_.size_ = 0;
+  ::memset(&_impl_.id_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.size_) -
+      reinterpret_cast<char*>(&_impl_.id_)) + sizeof(_impl_.size_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -543,19 +524,18 @@ PROTOBUF_NOINLINE void CreateRequest::Clear() {
           ::uint32_t cached_has_bits = 0;
           (void)cached_has_bits;
 
-          // int32 size = 1;
-          if (this_._internal_size() != 0) {
+          // int32 id = 1;
+          if (this_._internal_id() != 0) {
             target = ::google::protobuf::internal::WireFormatLite::
                 WriteInt32ToArrayWithField<1>(
-                    stream, this_._internal_size(), target);
+                    stream, this_._internal_id(), target);
           }
 
-          // string type = 2;
-          if (!this_._internal_type().empty()) {
-            const std::string& _s = this_._internal_type();
-            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Proyecto1Datos2.CreateRequest.type");
-            target = stream->WriteStringMaybeAliased(2, _s, target);
+          // int32 size = 2;
+          if (this_._internal_size() != 0) {
+            target = ::google::protobuf::internal::WireFormatLite::
+                WriteInt32ToArrayWithField<2>(
+                    stream, this_._internal_size(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -583,12 +563,12 @@ PROTOBUF_NOINLINE void CreateRequest::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
-            // string type = 2;
-            if (!this_._internal_type().empty()) {
-              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                              this_._internal_type());
+            // int32 id = 1;
+            if (this_._internal_id() != 0) {
+              total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
+                  this_._internal_id());
             }
-            // int32 size = 1;
+            // int32 size = 2;
             if (this_._internal_size() != 0) {
               total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(
                   this_._internal_size());
@@ -606,8 +586,8 @@ void CreateRequest::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::g
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_type().empty()) {
-    _this->_internal_set_type(from._internal_type());
+  if (from._internal_id() != 0) {
+    _this->_impl_.id_ = from._impl_.id_;
   }
   if (from._internal_size() != 0) {
     _this->_impl_.size_ = from._impl_.size_;
@@ -625,11 +605,13 @@ void CreateRequest::CopyFrom(const CreateRequest& from) {
 
 void CreateRequest::InternalSwap(CreateRequest* PROTOBUF_RESTRICT other) {
   using std::swap;
-  auto* arena = GetArena();
-  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.type_, &other->_impl_.type_, arena);
-        swap(_impl_.size_, other->_impl_.size_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.size_)
+      + sizeof(CreateRequest::_impl_.size_)
+      - PROTOBUF_FIELD_OFFSET(CreateRequest, _impl_.id_)>(
+          reinterpret_cast<char*>(&_impl_.id_),
+          reinterpret_cast<char*>(&other->_impl_.id_));
 }
 
 ::google::protobuf::Metadata CreateRequest::GetMetadata() const {

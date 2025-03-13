@@ -1589,26 +1589,20 @@ class CreateRequest final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kTypeFieldNumber = 2,
-    kSizeFieldNumber = 1,
+    kIdFieldNumber = 1,
+    kSizeFieldNumber = 2,
   };
-  // string type = 2;
-  void clear_type() ;
-  const std::string& type() const;
-  template <typename Arg_ = const std::string&, typename... Args_>
-  void set_type(Arg_&& arg, Args_... args);
-  std::string* mutable_type();
-  PROTOBUF_NODISCARD std::string* release_type();
-  void set_allocated_type(std::string* value);
+  // int32 id = 1;
+  void clear_id() ;
+  ::int32_t id() const;
+  void set_id(::int32_t value);
 
   private:
-  const std::string& _internal_type() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_type(
-      const std::string& value);
-  std::string* _internal_mutable_type();
+  ::int32_t _internal_id() const;
+  void _internal_set_id(::int32_t value);
 
   public:
-  // int32 size = 1;
+  // int32 size = 2;
   void clear_size() ;
   ::int32_t size() const;
   void set_size(::int32_t value);
@@ -1624,7 +1618,7 @@ class CreateRequest final : public ::google::protobuf::Message
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
       1, 2, 0,
-      42, 2>
+      0, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -1641,7 +1635,7 @@ class CreateRequest final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const CreateRequest& from_msg);
-    ::google::protobuf::internal::ArenaStringPtr type_;
+    ::int32_t id_;
     ::int32_t size_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1666,7 +1660,29 @@ class CreateRequest final : public ::google::protobuf::Message
 
 // CreateRequest
 
-// int32 size = 1;
+// int32 id = 1;
+inline void CreateRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = 0;
+}
+inline ::int32_t CreateRequest::id() const {
+  // @@protoc_insertion_point(field_get:Proyecto1Datos2.CreateRequest.id)
+  return _internal_id();
+}
+inline void CreateRequest::set_id(::int32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:Proyecto1Datos2.CreateRequest.id)
+}
+inline ::int32_t CreateRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void CreateRequest::_internal_set_id(::int32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// int32 size = 2;
 inline void CreateRequest::clear_size() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.size_ = 0;
@@ -1686,54 +1702,6 @@ inline ::int32_t CreateRequest::_internal_size() const {
 inline void CreateRequest::_internal_set_size(::int32_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.size_ = value;
-}
-
-// string type = 2;
-inline void CreateRequest::clear_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.type_.ClearToEmpty();
-}
-inline const std::string& CreateRequest::type() const
-    ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:Proyecto1Datos2.CreateRequest.type)
-  return _internal_type();
-}
-template <typename Arg_, typename... Args_>
-inline PROTOBUF_ALWAYS_INLINE void CreateRequest::set_type(Arg_&& arg,
-                                                     Args_... args) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:Proyecto1Datos2.CreateRequest.type)
-}
-inline std::string* CreateRequest::mutable_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  std::string* _s = _internal_mutable_type();
-  // @@protoc_insertion_point(field_mutable:Proyecto1Datos2.CreateRequest.type)
-  return _s;
-}
-inline const std::string& CreateRequest::_internal_type() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.type_.Get();
-}
-inline void CreateRequest::_internal_set_type(const std::string& value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.type_.Set(value, GetArena());
-}
-inline std::string* CreateRequest::_internal_mutable_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.type_.Mutable( GetArena());
-}
-inline std::string* CreateRequest::release_type() {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:Proyecto1Datos2.CreateRequest.type)
-  return _impl_.type_.Release();
-}
-inline void CreateRequest::set_allocated_type(std::string* value) {
-  ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.type_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.type_.IsDefault()) {
-    _impl_.type_.Set("", GetArena());
-  }
-  // @@protoc_insertion_point(field_set_allocated:Proyecto1Datos2.CreateRequest.type)
 }
 
 // -------------------------------------------------------------------

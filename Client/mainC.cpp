@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
     MemoryManagerClient client(grpc::CreateChannel(serverAddress, grpc::InsecureChannelCredentials()));
 
     std::cout << "Conectando al servidor en: " << serverAddress << std::endl;
-    std::string response = client.Create(100, "int");  // Asumí que 100 es el tamaño y "int" es el tipo de datos que estás creando
+    std::string response = client.Create(100, 1);  // Asumí que 100 es el tamaño y "int" es el tipo de datos que estás creando
     std::cout << response << std::endl;
 
 
