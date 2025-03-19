@@ -16,6 +16,7 @@ service MemoryManager {
 message CreateRequest {
   int32 id = 1;
   int32 size = 2;  // ✔ Tamaño de la memoria en bytes
+
   //string type = 3;
 }
 
