@@ -2,25 +2,38 @@
 #define MEMORY_MANAGER_H
 
 #include <cstddef>  // Para size_t
-#include <cstdlib>  // Para malloc y free
 #include <iostream>
-#include <vector>
-#include <map>
+#include <string>
+#include <variant>
+#include "MemoryBlock.h"
+#include "MemoryMap.h"
+
+// Define el tipo de dato escrito por el cliente
+using ValueType = std::variant<int, float, std::string>;
 
 class MemoryManager {
 private:
-    void* memoryBlock;  // Puntero al bloque de memoria reservado
-    size_t totalSize;   // Tamaño total de la memoria reservada
-    std::map<int, void*> allocations;  // Mapa que guarda los bloques asignados (ID -> dirección)
+    MemoryBlock memoryBlock;
+    MemoryMap memoryMap;
 
 public:
     explicit MemoryManager(size_t size);
-    ~MemoryManager();
+    ~MemoryManager() = default;
 
-    void* allocate(size_t size, int id);  // Asignar memoria dentro del bloque
-    void deallocate(int id);  // Liberar memoria dentro del bloque
-    void printMemoryState();  // Mostrar el estado de la memoria
+    // crea una asignación de memoria dentro
+    int create(size_t size, const std::string& type);
+
+    // Asigna determinado valor de memoria al un Id determinado
+    bool set(int id, const ValueType& value);
+
+    // Obteiene el valor guardado en el Id
+    ValueType get(int id);
+
+    // Print del estado de memoria actual
+    void printMemoryState();
+
+    // memory map para las operaciones del dump
+    const MemoryMap& getMemoryMap() const;
 };
 
 #endif // MEMORY_MANAGER_H
-

@@ -62,6 +62,8 @@ add_executable(mem-mgr
         Server/Memory_manager/GarbageCollector.h
         Server/Memory_manager/MemoryBlock.cpp
         Server/Memory_manager/MemoryBlock.h
+        Server/Memory_manager/MemoryMap.cpp
+        Server/Memory_manager/MemoryMap.h
         Server/Memory_manager/MemoryManager.cpp
         Server/Memory_manager/MemoryManager.h
         Server/mainS.cpp

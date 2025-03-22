@@ -4,29 +4,31 @@ package Proyecto1Datos2;
 
 // Definición del servicio GRPC
 service MemoryManager {
-  rpc Create(CreateRequest) returns (CreateResponse);
-  rpc Set(SetRequest) returns (SetResponse);
-  rpc Get(GetRequest) returns (GetResponse);
-  rpc IncreaseRefCount(RefCountRequest) returns (RefCountResponse);
-  rpc DecreaseRefCount(RefCountRequest) returns (RefCountResponse);
+  rpc Create(CreateRequest) returns (CreateResponse) {}
+  rpc Set(SetRequest) returns (SetResponse) {}
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc IncreaseRefCount(RefCountRequest) returns (RefCountResponse) {}
+  rpc DecreaseRefCount(RefCountRequest) returns (RefCountResponse) {}
 }
 
 // Mensajes de solicitud y respuesta
 
 message CreateRequest {
-  int32 id = 1;
-  int32 size = 2;  // ✔ Tamaño de la memoria en bytes
-  //string type = 3;
+  int32 size = 1;
+  string type = 2;
 }
 
 message CreateResponse {
   int32 id = 1;
-
 }
 
 message SetRequest {
   int32 id = 1;
-  string value = 2;
+  oneof value {
+    int32 int_value = 2;
+    float float_value = 3;
+    string string_value = 4;
+  }
 }
 
 message SetResponse {
@@ -38,7 +40,11 @@ message GetRequest {
 }
 
 message GetResponse {
-  string value = 1;
+  oneof value {
+    int32 int_value = 1;
+    float float_value = 2;
+    string string_value = 3;
+  }
 }
 
 message RefCountRequest {
