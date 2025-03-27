@@ -34,7 +34,7 @@ void MemoryManagerService::DumpMemoryState() {
 
     std::string fullPath = filename.str();
 
-    // Create and write to dump file
+    // Crea y escribe los dumps
     std::ofstream dumpFile(fullPath);
     if (dumpFile.is_open()) {
         dumpFile << "Estado de memoria actual:\n";
@@ -46,16 +46,21 @@ void MemoryManagerService::DumpMemoryState() {
             const auto& entry = pair.second;
             dumpFile << "ID: " << entry.id
                      << ", Type: " << entry.type
-                     << ", Size: " << entry.size
-                     << ", Address: " << entry.blockPointer;
+                     << ", Size: " << entry.size;
 
-            // Imprime el valor segun su tipo
-            if (entry.type == "int") {
-                dumpFile << ", Value: " << *static_cast<int*>(entry.blockPointer);
-            } else if (entry.type == "float") {
-                dumpFile << ", Value: " << *static_cast<float*>(entry.blockPointer);
-            } else if (entry.type == "string") {
-                dumpFile << ", Value: \"" << static_cast<char*>(entry.blockPointer) << "\"";
+            if (entry.isAllocated) {
+                dumpFile << ", Address: " << entry.blockPointer;
+
+                // Imprime el valor segun su tipo
+                if (entry.type == "int") {
+                    dumpFile << ", Value: " << *static_cast<int*>(entry.blockPointer);
+                } else if (entry.type == "float") {
+                    dumpFile << ", Value: " << *static_cast<float*>(entry.blockPointer);
+                } else if (entry.type == "string") {
+                    dumpFile << ", Value: \"" << static_cast<char*>(entry.blockPointer) << "\"";
+                }
+            } else {
+                dumpFile << " (ninguna asignacion de memoria todavia)";
             }
 
             dumpFile << std::endl;
@@ -88,7 +93,7 @@ grpc::Status MemoryManagerService::Create(grpc::ServerContext* context,
     }
 
     std::cout << "Error: No se pudo asignar la memoria" << std::endl;
-    return grpc::Status(grpc::StatusCode::RESOURCE_EXHAUSTED, "No hay suficiente memoria disponible.");
+    return grpc::Status(grpc::StatusCode::INTERNAL, "No hay suficiente memoria disponible.");
 }
 
 grpc::Status MemoryManagerService::Set(grpc::ServerContext* context,
@@ -97,7 +102,7 @@ grpc::Status MemoryManagerService::Set(grpc::ServerContext* context,
     int id = request->id();
     bool success = false;
 
-    // Handle different value types
+    // Manega diferentes tipos de valores
     if (request->has_int_value()) {
         int value = request->int_value();
         std::cout << "Solicitud Set() recibida con Id: " << id
@@ -128,7 +133,7 @@ grpc::Status MemoryManagerService::Get(grpc::ServerContext* context,
                                       Proyecto1Datos2::GetResponse* response) {
     int id = request->id();
 
-    std::cout << "Solicitud Get() recibida con Id: " << id << std::endl;
+    std::cout << "Solicitud Get() recibida con ID: " << id << std::endl;
 
     ValueType value = memoryManager.get(id);
 
@@ -141,13 +146,13 @@ grpc::Status MemoryManagerService::Get(grpc::ServerContext* context,
         response->set_string_value(std::get<std::string>(value));
     }
 
+    DumpMemoryState();
     return grpc::Status::OK;
 }
 
 grpc::Status MemoryManagerService::IncreaseRefCount(grpc::ServerContext* context,
                                                   const Proyecto1Datos2::RefCountRequest* request,
                                                   Proyecto1Datos2::RefCountResponse* response) {
-    // Placeholder implementation
     response->set_success(true);
     DumpMemoryState();
     return grpc::Status::OK;
