@@ -13,8 +13,8 @@ using ValueType = std::variant<int, float, std::string>;
 
 class MemoryManager {
 private:
-    MemoryBlock memoryBlock;
-    MemoryMap memoryMap;
+    MemoryBlock memoryBlock;  // Memory block guardas los valores
+    MemoryMap memoryMap;      // Memory map para seguir los punteros
 
 public:
     explicit MemoryManager(size_t size);
