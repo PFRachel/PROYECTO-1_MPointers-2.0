@@ -18,7 +18,7 @@ std::string MemoryManagerClient::Create(int size, std::string type) {
     grpc::Status status = stub_->Create(&context, request, &response);
 
     if (status.ok()) {
-        return "Memory created with ID: " + std::to_string(response.id());
+        return "Memoria creada con Id: " + std::to_string(response.id());
     } else {
         return "Error: " + status.error_message();
     }
@@ -28,16 +28,16 @@ std::string MemoryManagerClient::Set(int id, const std::variant<int, float, std:
     Proyecto1Datos2::SetRequest request;
     request.set_id(id);
 
-    // Set the appropriate value in the request based on the type
+    //valor apropiado en la solicitud por tipo de acuerdo al set
     if (std::holds_alternative<int>(value)) {
         request.set_int_value(std::get<int>(value));
-        std::cout << "Sending Set() with ID: " << id << " and integer value: " << std::get<int>(value) << std::endl;
+        std::cout << "Enviando Set() con ID: " << id << " y entero: " << std::get<int>(value) << std::endl;
     } else if (std::holds_alternative<float>(value)) {
         request.set_float_value(std::get<float>(value));
-        std::cout << "Sending Set() with ID: " << id << " and float value: " << std::get<float>(value) << std::endl;
+        std::cout << "Enviando Set() con ID: " << id << " y flotante: " << std::get<float>(value) << std::endl;
     } else if (std::holds_alternative<std::string>(value)) {
         request.set_string_value(std::get<std::string>(value));
-        std::cout << "Sending Set() with ID: " << id << " and string value: \"" << std::get<std::string>(value) << "\"" << std::endl;
+        std::cout << "Enviando Set() con ID: " << id << " y string: \"" << std::get<std::string>(value) << "\"" << std::endl;
     }
 
     Proyecto1Datos2::SetResponse response;
