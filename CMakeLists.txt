@@ -67,12 +67,14 @@ add_executable(mem-mgr
         Server/Memory_manager/MemoryManager.cpp
         Server/Memory_manager/MemoryManager.h
         Server/mainS.cpp
+        Server/Mpointers_lib/Script.cpp
 )
 target_link_libraries(mem-mgr memory_proto gRPC::grpc++ Threads::Threads)
 
 # Agregar ejecutable para el cliente
 add_executable(client
         Client/GRPC_Client.cpp
+        Client/GRPC_Client.h
         Client/mainC.cpp
         proto/GRPC-Memorymanager.pb.cc
         proto/GRPC-Memorymanager.grpc.pb.cc

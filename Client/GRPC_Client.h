@@ -6,6 +6,7 @@
 #include "GRPC-Memorymanager.grpc.pb.h"
 #include <string>
 #include <variant>
+#include <iostream>
 
 class MemoryManagerClient {
 public:
