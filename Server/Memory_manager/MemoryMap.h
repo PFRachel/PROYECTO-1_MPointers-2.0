@@ -1,7 +1,7 @@
 #ifndef MEMORY_MAP_H
 #define MEMORY_MAP_H
 
-#include <cstddef>  // For size_t
+#include <cstddef>  // Para size_t
 #include <string>
 #include <map>
 
@@ -11,12 +11,13 @@ struct MemoryMapEntry {
     size_t size;            // Tamanno de la memoria asignada
     std::string type;       // Tipo de dato almacenado
     void* blockPointer;     // Ptr al memory block
+    bool isAllocated;       // Indicativo de que si se ha asignado memoria
 
-    MemoryMapEntry(int _id, size_t _size, const std::string& _type, void* _ptr)
-        : id(_id), size(_size), type(_type), blockPointer(_ptr) {}
+    MemoryMapEntry(int _id, size_t _size, const std::string& _type)
+        : id(_id), size(_size), type(_type), blockPointer(nullptr), isAllocated(false) {}
 };
 
-// Memory Map class to manage memory allocations
+// Clase de MemoryMap para manejar las olaciones
 class MemoryMap {
 private:
     std::map<int, MemoryMapEntry> entries;
@@ -26,8 +27,11 @@ public:
     MemoryMap() = default;
     ~MemoryMap() = default;
 
-    // Add a new entry to the memory map
-    int addEntry(size_t size, const std::string& type, void* blockPointer);
+    // Annade un nuevo entry a la memoria sin asignarla
+    int addEntry(size_t size, const std::string& type);
+
+    // Establece el puntero de bloque para una entrada
+    bool setBlockPointer(int id, void* blockPointer);
 
     // Obtiene el Id de entrada
     MemoryMapEntry* getEntry(int id);
@@ -40,4 +44,3 @@ public:
 };
 
 #endif // MEMORY_MAP_H
-
