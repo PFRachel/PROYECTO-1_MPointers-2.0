@@ -12,6 +12,8 @@
 #include <iomanip>
 #include <sstream>
 #include <filesystem>
+
+#include "Memory_manager/GarbageCollector.h"
 #include "Memory_manager/MemoryManager.h"
 
 MemoryManagerService::MemoryManagerService(MemoryManager& memMgr, const std::string& dumpPath)
@@ -150,29 +152,80 @@ grpc::Status MemoryManagerService::Get(grpc::ServerContext* context,
     return grpc::Status::OK;
 }
 
-grpc::Status MemoryManagerService::IncreaseRefCount(grpc::ServerContext* context,
-                                                  const Proyecto1Datos2::RefCountRequest* request,
-                                                  Proyecto1Datos2::RefCountResponse* response) {
-    response->set_success(true);
-    DumpMemoryState();
+grpc::Status MemoryManagerService::IncreaseRefCount(
+    grpc::ServerContext* context,
+    const Proyecto1Datos2::RefCountRequest* request,
+    Proyecto1Datos2::RefCountResponse* response) {
+
+    int id = request->id();
+    std::cout << "Solicitud IncreaseRefCount() para ID: " << id << std::endl;
+
+    memoryManager.IncreaseRefCount(id);
+    int currentCount = memoryManager.getReferenceCount(id);
+
+    response->set_success(currentCount >= 0);
+    response->set_count(currentCount);
+
+    std::cout << "Nuevo RefCount para ID " << id << ": " << currentCount << std::endl;
     return grpc::Status::OK;
 }
 
-grpc::Status MemoryManagerService::DecreaseRefCount(grpc::ServerContext* context,
-                                                  const Proyecto1Datos2::RefCountRequest* request,
-                                                  Proyecto1Datos2::RefCountResponse* response) {
-    // Placeholder implementation
-    response->set_success(true);
-    DumpMemoryState();
+grpc::Status MemoryManagerService::DecreaseRefCount(
+    grpc::ServerContext* context,
+    const Proyecto1Datos2::RefCountRequest* request,
+    Proyecto1Datos2::RefCountResponse* response) {
+
+    int id = request->id();
+    std::cout << "Solicitud DecreaseRefCount() para ID: " << id << std::endl;
+
+    memoryManager.DecreaseRefCount(id);
+    int currentCount = memoryManager.getReferenceCount(id);
+
+    response->set_success(currentCount >= 0);
+    response->set_count(currentCount);
+
+    std::cout << "Nuevo RefCount para ID " << id << ": " << currentCount << std::endl;
     return grpc::Status::OK;
 }
+//==================================================
+grpc::Status MemoryManagerService::GetReferenceCount(
+    grpc::ServerContext* context,
+    const Proyecto1Datos2::RefCountRequest* request,
+    Proyecto1Datos2::RefCountResponse* response) {
 
+    int id = request->id();
+    std::cout << "Solicitud GetReferenceCount() recibida para ID: " << id << std::endl;
+
+    // Bloquear para thread safety
+    memoryManager.lockMemory();
+    int count = memoryManager.getReferenceCount(id);
+    memoryManager.unlockMemory();
+
+    // Configurar respuesta
+    response->set_success(count >= 0);
+    response->set_count(count);
+
+    std::cout << "Respondiendo GetReferenceCount() - ID: " << id
+             << " | RefCount: " << count
+             << " | Success: " << (count >= 0) << std::endl;
+
+    return grpc::Status::OK;
+}
+//================================================
 void RunServer(int port, int memsize, const std::string& dumpFolder) {
     // Convierte MB a bytes
     size_t memsizeBytes = static_cast<size_t>(memsize) * 1024 * 1024;
 
     // Crea el memory maneger
     MemoryManager memoryManager(memsizeBytes);
+
+    //---------------------------------
+    //-----------------------------------
+    //iniciar el Garbage Collector
+    GarbageCollector gc(memoryManager);
+    gc.start();
+    //------------------------------------
+    //-----------------------------------
 
     // Crea el servidor
     MemoryManagerService service(memoryManager, dumpFolder);

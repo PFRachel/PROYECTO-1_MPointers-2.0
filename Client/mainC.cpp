@@ -130,7 +130,6 @@ int main(int argc, char** argv) {
             running = false;
             continue;
         }
-
         std::string operation;
         std::vector<std::string> args;
         if (parseCommand(command, operation, args)) {
@@ -173,9 +172,35 @@ int main(int argc, char** argv) {
                 } catch (const std::exception& e) {
                     std::cout << "Error con los argumentos del Get " << e.what() << std::endl;
                 }
+            }else if (operation == "IncreaseRefCount" && args.size() == 1) {
+                try {
+                    int id = std::stoi(args[0]);
+                    std::string response = client.IncreaseRefCount(id);
+                    std::cout << response << std::endl;
+                    continue;
+                }catch (const std::exception& e) {
+                    std::cout << "Error con los argumentos del IncreaseRefCount "<< e.what() << std::endl;
+                }
+            }else if (operation == "DecreaseRefCount" && args.size() == 1) {
+                try {
+                    int id = std::stoi(args[0]);
+                    std::string response = client.DecreaseRefCount(id);
+                    std::cout << response << std::endl;
+                    continue;
+                }catch (const std::exception& e) {
+                    std::cout << "Error con los argumentos del DecreaseRefCount: " << e.what() << std::endl;
+                }
+            }else if (operation == "Free" && args.size() == 1) {
+                try {
+                    int id = std::stoi(args[0]);
+                    std::string response = client.Free(id);
+                    std::cout << response << std::endl;
+                    continue;
+                }catch (const std::exception& e) {
+                    std::cout << "Error con los argumentos del free " << e.what() << std::endl;
+                }
             }
         }
-
         std::cout << "Comando no identificado" << std::endl;
     }
     return 0;

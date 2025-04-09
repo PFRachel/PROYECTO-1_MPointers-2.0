@@ -2,7 +2,7 @@
 #define GRPC_SERVER_H
 
 #include <grpcpp/grpcpp.h>
-#include "GRPC-Memorymanager.grpc.pb.h"
+#include "../proto/GRPC-Memorymanager.grpc.pb.h"
 #include "Memory_manager/MemoryManager.h"
 #include <string>
 
@@ -35,6 +35,14 @@ public:
                                  Proyecto1Datos2::RefCountResponse* response) override;
 
     void DumpMemoryState(); // Funcion para generar el memory dump
+    //=========================================
+    // Nuevo método para obtener el contador de referencias
+    grpc::Status GetReferenceCount(grpc::ServerContext* context,
+                                 const Proyecto1Datos2::RefCountRequest* request,
+                                 Proyecto1Datos2::RefCountResponse* response) override;
+
+    //========================================
+
 };
 
 void RunServer(int port, int memsize, const std::string& dumpFolder);

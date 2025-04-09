@@ -34,3 +34,12 @@ void* MemoryBlock::allocate(size_t size) {
 
     return blockAddress;
 }
+//----------------------------------------
+//--------------------------
+void MemoryBlock::deallocate(void* address, size_t size) {
+    if (address) {
+        std::memset(address, 0, size);//borra los datos
+        std::cout << "Memoria en dirección " << address << " liberada (" << size << " bytes)" << std::endl;
+
+    }
+}
