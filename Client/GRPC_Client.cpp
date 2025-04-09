@@ -83,7 +83,25 @@ std::string MemoryManagerClient::Get(int id) {
         return "Error: " + status.error_message();
     }
 }
+std::string MemoryManagerClient::GetReferenceCount(int id) {
+    Proyecto1Datos2::RefCountRequest request;
+    request.set_id(id);
 
+    Proyecto1Datos2::RefCountResponse response;
+    grpc::ClientContext context;
+
+    grpc::Status status = stub_->GetReferenceCount(&context, request, &response);
+
+    if (status.ok()) {
+        if (response.success()) {
+            return "RefCount para ID " + std::to_string(id) + ": " + std::to_string(response.count());
+        } else {
+            return "ID " + std::to_string(id) + " no encontrado";
+        }
+    } else {
+        return "Error: " + status.error_message();
+    }
+}
 std::string MemoryManagerClient::IncreaseRefCount(int id) {
     Proyecto1Datos2::RefCountRequest request;
     request.set_id(id);
@@ -123,4 +141,25 @@ std::string MemoryManagerClient::DecreaseRefCount(int id) {
         return "Error: " + status.error_message();
     }
 }
+//--------------------------------
+//--------------------------------
+
+std::string MemoryManagerClient::Free(int id) {
+    Proyecto1Datos2::FreeRequest request;
+    request.set_id(id);
+    Proyecto1Datos2::FreeResponse response;
+    grpc::ClientContext context;
+    grpc::Status status = stub_->Free(&context, request, &response);
+    if (status.ok()) {
+        if (response.success()) {
+            return "Memoria liberada para ID: " + std::to_string(id);
+        }else {
+            return "No se pudo liberar la memoria para ID: " + std::to_string(id);
+        }
+    }else {
+        return "Error: " + status.error_message();
+    }
+}
+//--------------------------------
+//--------------------------------
 

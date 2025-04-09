@@ -3,7 +3,9 @@
 //
 #include "MemoryManager.h"
 #include <cstring>
-
+#include <ctime>
+#include <mutex>
+#include <memory>
 MemoryManager::MemoryManager(size_t memsize) : memoryBlock(memsize) {
     std::cout << "Memory Manager inicializado con " << memsize << " bytes" << std::endl;
 }
@@ -111,6 +113,88 @@ ValueType MemoryManager::get(int id) {
         return 0; // Default return value
     }
 }
+//-------------------------------------------
+//-------------------------------------------
+//CREAMOS LA PARTE PARA INCREMENTAR EL id
+void MemoryManager::IncreaseRefCount(int id) {
+    std::lock_guard<std::mutex> lock(memoryMutex);
+    if (auto* entry = memoryMap.getEntry(id)) {
+        entry->referenceCount++;
+        std::cout << "[MemoryManager] RefCount incrementado para ID " << id
+                 << ": " << entry->referenceCount << std::endl;
+    }
+}
+//CREAMOS LA PARTE PARA DECREMENTAR EL id
+void MemoryManager::DecreaseRefCount(int id) {
+    std::lock_guard<std::mutex> lock(memoryMutex);
+    if (auto* entry = memoryMap.getEntry(id)) {
+        if (entry->referenceCount > 0) {
+            entry->referenceCount--;
+            std::cout << "[MemoryManager] RefCount decrementado para ID " << id
+                     << ": " << entry->referenceCount << std::endl;
+        }
+    }
+}
+//LIBERAR ESPACIO ESTO LO USAREMOS PARA EL GARBAGE
+bool MemoryManager::Free(int id) {
+    std::lock_guard<std::mutex> lock(memoryMutex);
+    MemoryMapEntry* entry = memoryMap.getEntry(id);
+    if (!entry) {
+        std::cerr << "[MemoryManager] Error: Intento de liberar un ID inexistente " << id << std::endl;
+        return false;
+    }
+
+    if (entry->referenceCount > 0) {
+        std::cout << "[MemoryManager] No se puede liberar ID " << id << " porque todavía tiene referencias activas (" << entry->referenceCount << ")" << std::endl;
+        return false;
+    }
+
+    if (entry->blockPointer) {
+        std::cout << "[MemoryManager] Liberando memoria para ID " << id << std::endl;
+        free(entry->blockPointer);
+        entry->blockPointer = nullptr;
+    }
+
+    // Remueve la entrada del MemoryMap
+    if (memoryMap.removeEntry(id)) {
+        std::cout << "[MemoryManager] Entrada de memoria removida para ID " << id << std::endl;
+        return true;
+    } else {
+        std::cerr << "[MemoryManager] Error: No se pudo eliminar la entrada de memoria para ID " << id << std::endl;
+        return false;
+    }
+}
+MemoryMap& MemoryManager::getMemoryMap() {
+    return memoryMap;
+}
+const MemoryMap& MemoryManager::getMemoryMap() const {
+    return memoryMap;
+}
+void MemoryManager::removeEntry(int id) {
+    std::lock_guard<std::mutex> lock(memoryMutex);
+    memoryMap.removeEntry(id);
+}
+//-------------------------------------------
+void MemoryManager::lockMemory() {
+    memoryMutex.lock();
+}
+
+void MemoryManager::unlockMemory() {
+    memoryMutex.unlock();
+}
+//-------------------------------------------
+//===================================
+// Implementación de getReferenceCount
+int MemoryManager::getReferenceCount(int id) const {
+    std::lock_guard<std::mutex> lock(memoryMutex);
+    if (auto entry = memoryMap.getEntry(id)) {
+        return entry->referenceCount;
+    }
+    return -1;  // ID no encontrado
+}
+
+//====================================
+
 
 void MemoryManager::printMemoryState() {
     std::cout << "Current memory state:\n";
@@ -139,7 +223,5 @@ void MemoryManager::printMemoryState() {
     }
 }
 
-const MemoryMap& MemoryManager::getMemoryMap() const {
-    return memoryMap;
-}
+
 

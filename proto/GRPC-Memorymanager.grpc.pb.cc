@@ -27,6 +27,8 @@ static const char* MemoryManager_method_names[] = {
   "/Proyecto1Datos2.MemoryManager/Get",
   "/Proyecto1Datos2.MemoryManager/IncreaseRefCount",
   "/Proyecto1Datos2.MemoryManager/DecreaseRefCount",
+  "/Proyecto1Datos2.MemoryManager/Free",
+  "/Proyecto1Datos2.MemoryManager/GetReferenceCount",
 };
 
 std::unique_ptr< MemoryManager::Stub> MemoryManager::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +43,8 @@ MemoryManager::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_Get_(MemoryManager_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_IncreaseRefCount_(MemoryManager_method_names[3], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_DecreaseRefCount_(MemoryManager_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Free_(MemoryManager_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetReferenceCount_(MemoryManager_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MemoryManager::Stub::Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::Proyecto1Datos2::CreateResponse* response) {
@@ -158,6 +162,52 @@ void MemoryManager::Stub::async::DecreaseRefCount(::grpc::ClientContext* context
   return result;
 }
 
+::grpc::Status MemoryManager::Stub::Free(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest& request, ::Proyecto1Datos2::FreeResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Proyecto1Datos2::FreeRequest, ::Proyecto1Datos2::FreeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Free_, context, request, response);
+}
+
+void MemoryManager::Stub::async::Free(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Proyecto1Datos2::FreeRequest, ::Proyecto1Datos2::FreeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Free_, context, request, response, std::move(f));
+}
+
+void MemoryManager::Stub::async::Free(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Free_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::FreeResponse>* MemoryManager::Stub::PrepareAsyncFreeRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Proyecto1Datos2::FreeResponse, ::Proyecto1Datos2::FreeRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Free_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::FreeResponse>* MemoryManager::Stub::AsyncFreeRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncFreeRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status MemoryManager::Stub::GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::Proyecto1Datos2::RefCountResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_GetReferenceCount_, context, request, response);
+}
+
+void MemoryManager::Stub::async::GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReferenceCount_, context, request, response, std::move(f));
+}
+
+void MemoryManager::Stub::async::GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_GetReferenceCount_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* MemoryManager::Stub::PrepareAsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Proyecto1Datos2::RefCountResponse, ::Proyecto1Datos2::RefCountRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_GetReferenceCount_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* MemoryManager::Stub::AsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncGetReferenceCountRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MemoryManager::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MemoryManager_method_names[0],
@@ -209,6 +259,26 @@ MemoryManager::Service::Service() {
              ::Proyecto1Datos2::RefCountResponse* resp) {
                return service->DecreaseRefCount(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MemoryManager_method_names[5],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MemoryManager::Service, ::Proyecto1Datos2::FreeRequest, ::Proyecto1Datos2::FreeResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MemoryManager::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Proyecto1Datos2::FreeRequest* req,
+             ::Proyecto1Datos2::FreeResponse* resp) {
+               return service->Free(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MemoryManager_method_names[6],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MemoryManager::Service, ::Proyecto1Datos2::RefCountRequest, ::Proyecto1Datos2::RefCountResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MemoryManager::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Proyecto1Datos2::RefCountRequest* req,
+             ::Proyecto1Datos2::RefCountResponse* resp) {
+               return service->GetReferenceCount(ctx, req, resp);
+             }, this)));
 }
 
 MemoryManager::Service::~Service() {
@@ -243,6 +313,20 @@ MemoryManager::Service::~Service() {
 }
 
 ::grpc::Status MemoryManager::Service::DecreaseRefCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MemoryManager::Service::Free(::grpc::ServerContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MemoryManager::Service::GetReferenceCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response) {
   (void) context;
   (void) request;
   (void) response;

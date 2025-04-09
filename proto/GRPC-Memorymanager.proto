@@ -9,6 +9,9 @@ service MemoryManager {
   rpc Get(GetRequest) returns (GetResponse) {}
   rpc IncreaseRefCount(RefCountRequest) returns (RefCountResponse) {}
   rpc DecreaseRefCount(RefCountRequest) returns (RefCountResponse) {}
+  rpc Free(FreeRequest) returns (FreeResponse) {}
+  rpc GetReferenceCount (RefCountRequest) returns (RefCountResponse);
+
 }
 
 // Mensajes de solicitud y respuesta
@@ -53,4 +56,12 @@ message RefCountRequest {
 
 message RefCountResponse {
   bool success = 1;
+  int32 count = 2;
+}
+//mensajes para garbage
+message FreeRequest{
+  int32 id =1;
+}
+message FreeResponse{
+  bool success =1;
 }

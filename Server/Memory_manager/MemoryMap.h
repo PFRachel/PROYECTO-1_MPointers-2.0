@@ -4,6 +4,10 @@
 #include <cstddef>  // Para size_t
 #include <string>
 #include <map>
+#include "vector"
+#include <unordered_map>
+#include <memory>  // Para std::shared_ptr
+#include "MemoryBlock.h"
 
 // Estructura del memory map
 struct MemoryMapEntry {
@@ -12,9 +16,14 @@ struct MemoryMapEntry {
     std::string type;       // Tipo de dato almacenado
     void* blockPointer;     // Ptr al memory block
     bool isAllocated;       // Indicativo de que si se ha asignado memoria
+    //---------------------
+    //----------------------
+    int referenceCount;  // CONTADOR REFERENCIAS
+    //-----------------------
+    //----------------
 
     MemoryMapEntry(int _id, size_t _size, const std::string& _type)
-        : id(_id), size(_size), type(_type), blockPointer(nullptr), isAllocated(false) {}
+        : id(_id), size(_size), type(_type), blockPointer(nullptr), isAllocated(false), referenceCount(1) {}
 };
 
 // Clase de MemoryMap para manejar las olaciones
@@ -22,7 +31,6 @@ class MemoryMap {
 private:
     std::map<int, MemoryMapEntry> entries;
     int nextId = 1;
-
 public:
     MemoryMap() = default;
     ~MemoryMap() = default;
@@ -35,12 +43,20 @@ public:
 
     // Obtiene el Id de entrada
     MemoryMapEntry* getEntry(int id);
+    const MemoryMapEntry* getEntry(int id) const;
 
     // Remueve Id (por implementar)
     bool removeEntry(int id);
 
     // Obtiene todas las entradas
+    // En MemoryMap.h
     const std::map<int, MemoryMapEntry>& getAllEntries() const;
+
+    //------------Garbage Collector--------
+    std::vector<int> getAllIds() const;
+
+
+    //-----------------------
 };
 
 #endif // MEMORY_MAP_H

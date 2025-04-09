@@ -14,6 +14,7 @@ private:
     void* memoryBlock;      // Puntero al memory block asignado
     size_t totalSize;       // Tamanno total del memoryblock
     size_t nextAvailableOffset = 0;  // Offset para la siguiente asignacion
+    int referenceCount = 0;
 
 public:
     explicit MemoryBlock(size_t size);
@@ -30,6 +31,13 @@ public:
 
     // Get the base address of the memory block
     void* getBaseAddress() const { return memoryBlock; }
+
+    //--------------------------
+    //----------------------------
+    // se agrega el deallocate que es para liberar el espacio de memoria
+    void deallocate(void* address, size_t size);
+    //---------------------------------
+    //----------------------------------
 };
 
 #endif // MEMORY_BLOCK_H

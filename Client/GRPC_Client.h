@@ -3,7 +3,7 @@
 #define GRPC_CLIENT_H
 
 #include <grpcpp/grpcpp.h>
-#include "GRPC-Memorymanager.grpc.pb.h"
+#include "../proto/GRPC-Memorymanager.grpc.pb.h"
 #include <string>
 #include <variant>
 
@@ -26,6 +26,10 @@ public:
 
     //Metodo para hacer decrementar el numero de referencias de determinado Id (Por implementar9
     std::string DecreaseRefCount(int id);
+    //------------------
+    std::string GetReferenceCount(int id);//mostrar id 
+    std::string Free(int id);
+    //-------------------
 
 private:
     // Stub para las operaciones de gRPC (cliente)
