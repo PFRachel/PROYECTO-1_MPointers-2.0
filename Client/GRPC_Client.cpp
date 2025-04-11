@@ -160,6 +160,20 @@ std::string MemoryManagerClient::Free(int id) {
         return "Error: " + status.error_message();
     }
 }
-//--------------------------------
+//------DESFRAGMENTAR -----------
+std::string MemoryManagerClient::Defragment() {
+    Proyecto1Datos2::DefragmentRequest request;
+    Proyecto1Datos2::DefragmentResponse response;
+    grpc::ClientContext context;
+
+    grpc::Status status = stub_->Defragment(&context, request, &response);
+
+    if (status.ok()) {
+        return response.message();  // puedes cambiar esto si el mensaje es diferente
+    } else {
+        return "Error al desfragmentar: " + status.error_message();
+    }
+}
+
 //--------------------------------
 

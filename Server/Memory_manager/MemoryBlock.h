@@ -33,6 +33,9 @@ public:
     void* getBaseAddress() const { return memoryBlock; }
 
     //--------------------------
+    // Permite recalcular el offset después de desfragmentar
+    void updateNextAvailableOffset(size_t usedBytes);
+
     //----------------------------
     // se agrega el deallocate que es para liberar el espacio de memoria
     void deallocate(void* address, size_t size);

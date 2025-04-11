@@ -190,7 +190,7 @@ int main(int argc, char** argv) {
                 }catch (const std::exception& e) {
                     std::cout << "Error con los argumentos del DecreaseRefCount: " << e.what() << std::endl;
                 }
-            }else if (operation == "Free" && args.size() == 1) {
+            } else if (operation == "Free" && args.size() == 1) {
                 try {
                     int id = std::stoi(args[0]);
                     std::string response = client.Free(id);
@@ -199,7 +199,16 @@ int main(int argc, char** argv) {
                 }catch (const std::exception& e) {
                     std::cout << "Error con los argumentos del free " << e.what() << std::endl;
                 }
+            } else if (operation == "Defragment" && args.empty()) {
+                try {
+                    std::string response = client.Defragment();
+                    std::cout << response << std::endl;
+                    continue;
+                } catch (const std::exception& e) {
+                    std::cout << "Error al ejecutar Defragment: " << e.what() << std::endl;
+                }
             }
+
         }
         std::cout << "Comando no identificado" << std::endl;
     }
