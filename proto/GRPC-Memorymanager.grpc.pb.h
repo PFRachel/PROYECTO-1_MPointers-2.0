@@ -85,6 +85,13 @@ class MemoryManager final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncGetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncGetReferenceCountRaw(context, request, cq));
     }
+    virtual ::grpc::Status Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::Proyecto1Datos2::DefragmentResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>> AsyncDefragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>>(AsyncDefragmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>> PrepareAsyncDefragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>>(PrepareAsyncDefragmentRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -102,6 +109,8 @@ class MemoryManager final {
       virtual void Free(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -121,6 +130,8 @@ class MemoryManager final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::FreeResponse>* PrepareAsyncFreeRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* AsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>* AsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Proyecto1Datos2::DefragmentResponse>* PrepareAsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -174,6 +185,13 @@ class MemoryManager final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>> PrepareAsyncGetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>>(PrepareAsyncGetReferenceCountRaw(context, request, cq));
     }
+    ::grpc::Status Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::Proyecto1Datos2::DefragmentResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>> AsyncDefragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>>(AsyncDefragmentRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>> PrepareAsyncDefragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>>(PrepareAsyncDefragmentRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -191,6 +209,8 @@ class MemoryManager final {
       void Free(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, std::function<void(::grpc::Status)>) override;
       void GetReferenceCount(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, std::function<void(::grpc::Status)>) override;
+      void Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -216,6 +236,8 @@ class MemoryManager final {
     ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::FreeResponse>* PrepareAsyncFreeRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::FreeRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* AsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::RefCountResponse>* PrepareAsyncGetReferenceCountRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::RefCountRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>* AsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>* PrepareAsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Create_;
     const ::grpc::internal::RpcMethod rpcmethod_Set_;
     const ::grpc::internal::RpcMethod rpcmethod_Get_;
@@ -223,6 +245,7 @@ class MemoryManager final {
     const ::grpc::internal::RpcMethod rpcmethod_DecreaseRefCount_;
     const ::grpc::internal::RpcMethod rpcmethod_Free_;
     const ::grpc::internal::RpcMethod rpcmethod_GetReferenceCount_;
+    const ::grpc::internal::RpcMethod rpcmethod_Defragment_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -237,6 +260,7 @@ class MemoryManager final {
     virtual ::grpc::Status DecreaseRefCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response);
     virtual ::grpc::Status Free(::grpc::ServerContext* context, const ::Proyecto1Datos2::FreeRequest* request, ::Proyecto1Datos2::FreeResponse* response);
     virtual ::grpc::Status GetReferenceCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response);
+    virtual ::grpc::Status Defragment(::grpc::ServerContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Create : public BaseClass {
@@ -378,7 +402,27 @@ class MemoryManager final {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_Create<WithAsyncMethod_Set<WithAsyncMethod_Get<WithAsyncMethod_IncreaseRefCount<WithAsyncMethod_DecreaseRefCount<WithAsyncMethod_Free<WithAsyncMethod_GetReferenceCount<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Defragment() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDefragment(::grpc::ServerContext* context, ::Proyecto1Datos2::DefragmentRequest* request, ::grpc::ServerAsyncResponseWriter< ::Proyecto1Datos2::DefragmentResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Create<WithAsyncMethod_Set<WithAsyncMethod_Get<WithAsyncMethod_IncreaseRefCount<WithAsyncMethod_DecreaseRefCount<WithAsyncMethod_Free<WithAsyncMethod_GetReferenceCount<WithAsyncMethod_Defragment<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_Create : public BaseClass {
    private:
@@ -568,7 +612,34 @@ class MemoryManager final {
     virtual ::grpc::ServerUnaryReactor* GetReferenceCount(
       ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_Create<WithCallbackMethod_Set<WithCallbackMethod_Get<WithCallbackMethod_IncreaseRefCount<WithCallbackMethod_DecreaseRefCount<WithCallbackMethod_Free<WithCallbackMethod_GetReferenceCount<Service > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Defragment() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response) { return this->Defragment(context, request, response); }));}
+    void SetMessageAllocatorFor_Defragment(
+        ::grpc::MessageAllocator< ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Defragment(
+      ::grpc::CallbackServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Create<WithCallbackMethod_Set<WithCallbackMethod_Get<WithCallbackMethod_IncreaseRefCount<WithCallbackMethod_DecreaseRefCount<WithCallbackMethod_Free<WithCallbackMethod_GetReferenceCount<WithCallbackMethod_Defragment<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_Create : public BaseClass {
@@ -685,6 +756,23 @@ class MemoryManager final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetReferenceCount(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::RefCountRequest* /*request*/, ::Proyecto1Datos2::RefCountResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Defragment() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -827,6 +915,26 @@ class MemoryManager final {
     }
     void RequestGetReferenceCount(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Defragment() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestDefragment(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -981,6 +1089,28 @@ class MemoryManager final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetReferenceCount(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Defragment() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Defragment(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Defragment(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1172,9 +1302,36 @@ class MemoryManager final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetReferenceCount(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::RefCountRequest,::Proyecto1Datos2::RefCountResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<WithStreamedUnaryMethod_Free<WithStreamedUnaryMethod_GetReferenceCount<Service > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Defragment : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Defragment() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse>* streamer) {
+                       return this->StreamedDefragment(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Defragment() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Defragment(::grpc::ServerContext* /*context*/, const ::Proyecto1Datos2::DefragmentRequest* /*request*/, ::Proyecto1Datos2::DefragmentResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedDefragment(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Proyecto1Datos2::DefragmentRequest,::Proyecto1Datos2::DefragmentResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<WithStreamedUnaryMethod_Free<WithStreamedUnaryMethod_GetReferenceCount<WithStreamedUnaryMethod_Defragment<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<WithStreamedUnaryMethod_Free<WithStreamedUnaryMethod_GetReferenceCount<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_Create<WithStreamedUnaryMethod_Set<WithStreamedUnaryMethod_Get<WithStreamedUnaryMethod_IncreaseRefCount<WithStreamedUnaryMethod_DecreaseRefCount<WithStreamedUnaryMethod_Free<WithStreamedUnaryMethod_GetReferenceCount<WithStreamedUnaryMethod_Defragment<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace Proyecto1Datos2

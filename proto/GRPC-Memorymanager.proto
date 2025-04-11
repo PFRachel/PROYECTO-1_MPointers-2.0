@@ -11,6 +11,7 @@ service MemoryManager {
   rpc DecreaseRefCount(RefCountRequest) returns (RefCountResponse) {}
   rpc Free(FreeRequest) returns (FreeResponse) {}
   rpc GetReferenceCount (RefCountRequest) returns (RefCountResponse);
+  rpc Defragment(DefragmentRequest) returns (DefragmentResponse);
 
 }
 
@@ -64,4 +65,10 @@ message FreeRequest{
 }
 message FreeResponse{
   bool success =1;
+}
+//desfragmentar
+message DefragmentRequest {}
+
+message DefragmentResponse {
+  string message = 1;
 }

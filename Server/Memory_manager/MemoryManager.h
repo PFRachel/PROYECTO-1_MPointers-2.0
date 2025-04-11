@@ -51,6 +51,9 @@ public:
     // liberar espacio
     bool Free(int id);
     void removeEntry(int id);
+    //====DESFRAGMENTACION DE MEMORIA===========
+    void Defragment();
+    //======================================
 
 
     //----------------------------------
@@ -58,6 +61,8 @@ public:
     void printMemoryState();
     // memory map para las operaciones del dump
     const std::map<int, MemoryMapEntry>& getAllEntries() const;
+    //std::unordered_map<int, MemoryMapEntry>& getAllEntries(); // No const
+
 };
 
 #endif // MEMORY_MANAGER_H

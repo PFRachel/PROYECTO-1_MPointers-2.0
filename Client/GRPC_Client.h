@@ -29,6 +29,8 @@ public:
     //------------------
     std::string GetReferenceCount(int id);//mostrar id 
     std::string Free(int id);
+    std::string Defragment();
+
     //-------------------
 
 private:

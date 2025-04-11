@@ -230,6 +230,51 @@ struct FreeRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FreeRequestDefaultTypeInternal _FreeRequest_default_instance_;
 
+inline constexpr DefragmentResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : message_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        _cached_size_{0} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR DefragmentResponse::DefragmentResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct DefragmentResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DefragmentResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DefragmentResponseDefaultTypeInternal() {}
+  union {
+    DefragmentResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DefragmentResponseDefaultTypeInternal _DefragmentResponse_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR DefragmentRequest::DefragmentRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct DefragmentRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DefragmentRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DefragmentRequestDefaultTypeInternal() {}
+  union {
+    DefragmentRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DefragmentRequestDefaultTypeInternal _DefragmentRequest_default_instance_;
+
 inline constexpr CreateResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : id_{0},
@@ -389,6 +434,23 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::FreeResponse, _impl_.success_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::DefragmentRequest, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::DefragmentResponse, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        PROTOBUF_FIELD_OFFSET(::Proyecto1Datos2::DefragmentResponse, _impl_.message_),
 };
 
 static const ::_pbi::MigrationSchema
@@ -403,6 +465,8 @@ static const ::_pbi::MigrationSchema
         {71, -1, -1, sizeof(::Proyecto1Datos2::RefCountResponse)},
         {81, -1, -1, sizeof(::Proyecto1Datos2::FreeRequest)},
         {90, -1, -1, sizeof(::Proyecto1Datos2::FreeResponse)},
+        {99, -1, -1, sizeof(::Proyecto1Datos2::DefragmentRequest)},
+        {107, -1, -1, sizeof(::Proyecto1Datos2::DefragmentResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::Proyecto1Datos2::_CreateRequest_default_instance_._instance,
@@ -415,6 +479,8 @@ static const ::_pb::Message* const file_default_instances[] = {
     &::Proyecto1Datos2::_RefCountResponse_default_instance_._instance,
     &::Proyecto1Datos2::_FreeRequest_default_instance_._instance,
     &::Proyecto1Datos2::_FreeResponse_default_instance_._instance,
+    &::Proyecto1Datos2::_DefragmentRequest_default_instance_._instance,
+    &::Proyecto1Datos2::_DefragmentResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_GRPC_2dMemorymanager_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -430,34 +496,38 @@ const char descriptor_table_protodef_GRPC_2dMemorymanager_2eproto[] ABSL_ATTRIBU
     "H\000B\007\n\005value\"\035\n\017RefCountRequest\022\n\n\002id\030\001 \001"
     "(\005\"2\n\020RefCountResponse\022\017\n\007success\030\001 \001(\010\022"
     "\r\n\005count\030\002 \001(\005\"\031\n\013FreeRequest\022\n\n\002id\030\001 \001("
-    "\005\"\037\n\014FreeResponse\022\017\n\007success\030\001 \001(\0102\273\004\n\rM"
-    "emoryManager\022K\n\006Create\022\036.Proyecto1Datos2"
-    ".CreateRequest\032\037.Proyecto1Datos2.CreateR"
-    "esponse\"\000\022B\n\003Set\022\033.Proyecto1Datos2.SetRe"
-    "quest\032\034.Proyecto1Datos2.SetResponse\"\000\022B\n"
-    "\003Get\022\033.Proyecto1Datos2.GetRequest\032\034.Proy"
-    "ecto1Datos2.GetResponse\"\000\022Y\n\020IncreaseRef"
-    "Count\022 .Proyecto1Datos2.RefCountRequest\032"
-    "!.Proyecto1Datos2.RefCountResponse\"\000\022Y\n\020"
-    "DecreaseRefCount\022 .Proyecto1Datos2.RefCo"
-    "untRequest\032!.Proyecto1Datos2.RefCountRes"
-    "ponse\"\000\022E\n\004Free\022\034.Proyecto1Datos2.FreeRe"
-    "quest\032\035.Proyecto1Datos2.FreeResponse\"\000\022X"
-    "\n\021GetReferenceCount\022 .Proyecto1Datos2.Re"
-    "fCountRequest\032!.Proyecto1Datos2.RefCount"
-    "Responseb\006proto3"
+    "\005\"\037\n\014FreeResponse\022\017\n\007success\030\001 \001(\010\"\023\n\021De"
+    "fragmentRequest\"%\n\022DefragmentResponse\022\017\n"
+    "\007message\030\001 \001(\t2\222\005\n\rMemoryManager\022K\n\006Crea"
+    "te\022\036.Proyecto1Datos2.CreateRequest\032\037.Pro"
+    "yecto1Datos2.CreateResponse\"\000\022B\n\003Set\022\033.P"
+    "royecto1Datos2.SetRequest\032\034.Proyecto1Dat"
+    "os2.SetResponse\"\000\022B\n\003Get\022\033.Proyecto1Dato"
+    "s2.GetRequest\032\034.Proyecto1Datos2.GetRespo"
+    "nse\"\000\022Y\n\020IncreaseRefCount\022 .Proyecto1Dat"
+    "os2.RefCountRequest\032!.Proyecto1Datos2.Re"
+    "fCountResponse\"\000\022Y\n\020DecreaseRefCount\022 .P"
+    "royecto1Datos2.RefCountRequest\032!.Proyect"
+    "o1Datos2.RefCountResponse\"\000\022E\n\004Free\022\034.Pr"
+    "oyecto1Datos2.FreeRequest\032\035.Proyecto1Dat"
+    "os2.FreeResponse\"\000\022X\n\021GetReferenceCount\022"
+    " .Proyecto1Datos2.RefCountRequest\032!.Proy"
+    "ecto1Datos2.RefCountResponse\022U\n\nDefragme"
+    "nt\022\".Proyecto1Datos2.DefragmentRequest\032#"
+    ".Proyecto1Datos2.DefragmentResponseb\006pro"
+    "to3"
 };
 static ::absl::once_flag descriptor_table_GRPC_2dMemorymanager_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_GRPC_2dMemorymanager_2eproto = {
     false,
     false,
-    1096,
+    1243,
     descriptor_table_protodef_GRPC_2dMemorymanager_2eproto,
     "GRPC-Memorymanager.proto",
     &descriptor_table_GRPC_2dMemorymanager_2eproto_once,
     nullptr,
     0,
-    10,
+    12,
     schemas,
     file_default_instances,
     TableStruct_GRPC_2dMemorymanager_2eproto::offsets,
@@ -2896,6 +2966,340 @@ void FreeResponse::InternalSwap(FreeResponse* PROTOBUF_RESTRICT other) {
 }
 
 ::google::protobuf::Metadata FreeResponse::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class DefragmentRequest::_Internal {
+ public:
+};
+
+DefragmentRequest::DefragmentRequest(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:Proyecto1Datos2.DefragmentRequest)
+}
+DefragmentRequest::DefragmentRequest(
+    ::google::protobuf::Arena* arena,
+    const DefragmentRequest& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  DefragmentRequest* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:Proyecto1Datos2.DefragmentRequest)
+}
+
+inline void* DefragmentRequest::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) DefragmentRequest(arena);
+}
+constexpr auto DefragmentRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(DefragmentRequest),
+                                            alignof(DefragmentRequest));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull DefragmentRequest::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_DefragmentRequest_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &DefragmentRequest::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<DefragmentRequest>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &DefragmentRequest::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<DefragmentRequest>(), &DefragmentRequest::ByteSizeLong,
+            &DefragmentRequest::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(DefragmentRequest, _impl_._cached_size_),
+        false,
+    },
+    &DefragmentRequest::kDescriptorMethods,
+    &descriptor_table_GRPC_2dMemorymanager_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* DefragmentRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> DefragmentRequest::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Proyecto1Datos2::DefragmentRequest>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata DefragmentRequest::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class DefragmentResponse::_Internal {
+ public:
+};
+
+DefragmentResponse::DefragmentResponse(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:Proyecto1Datos2.DefragmentResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE DefragmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
+    const Impl_& from, const ::Proyecto1Datos2::DefragmentResponse& from_msg)
+      : message_(arena, from.message_),
+        _cached_size_{0} {}
+
+DefragmentResponse::DefragmentResponse(
+    ::google::protobuf::Arena* arena,
+    const DefragmentResponse& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  DefragmentResponse* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+
+  // @@protoc_insertion_point(copy_constructor:Proyecto1Datos2.DefragmentResponse)
+}
+inline PROTOBUF_NDEBUG_INLINE DefragmentResponse::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* arena)
+      : message_(arena),
+        _cached_size_{0} {}
+
+inline void DefragmentResponse::SharedCtor(::_pb::Arena* arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+}
+DefragmentResponse::~DefragmentResponse() {
+  // @@protoc_insertion_point(destructor:Proyecto1Datos2.DefragmentResponse)
+  SharedDtor(*this);
+}
+inline void DefragmentResponse::SharedDtor(MessageLite& self) {
+  DefragmentResponse& this_ = static_cast<DefragmentResponse&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.message_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* DefragmentResponse::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) DefragmentResponse(arena);
+}
+constexpr auto DefragmentResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(DefragmentResponse),
+                                            alignof(DefragmentResponse));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull DefragmentResponse::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_DefragmentResponse_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &DefragmentResponse::MergeImpl,
+        ::google::protobuf::Message::GetNewImpl<DefragmentResponse>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &DefragmentResponse::SharedDtor,
+        ::google::protobuf::Message::GetClearImpl<DefragmentResponse>(), &DefragmentResponse::ByteSizeLong,
+            &DefragmentResponse::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(DefragmentResponse, _impl_._cached_size_),
+        false,
+    },
+    &DefragmentResponse::kDescriptorMethods,
+    &descriptor_table_GRPC_2dMemorymanager_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* DefragmentResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 1, 0, 50, 2> DefragmentResponse::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    1, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967294,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    1,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::Proyecto1Datos2::DefragmentResponse>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string message = 1;
+    {::_pbi::TcParser::FastUS1,
+     {10, 63, 0, PROTOBUF_FIELD_OFFSET(DefragmentResponse, _impl_.message_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // string message = 1;
+    {PROTOBUF_FIELD_OFFSET(DefragmentResponse, _impl_.message_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\42\7\0\0\0\0\0\0"
+    "Proyecto1Datos2.DefragmentResponse"
+    "message"
+  }},
+};
+
+PROTOBUF_NOINLINE void DefragmentResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:Proyecto1Datos2.DefragmentResponse)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.message_.ClearToEmpty();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::uint8_t* DefragmentResponse::_InternalSerialize(
+            const MessageLite& base, ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) {
+          const DefragmentResponse& this_ = static_cast<const DefragmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::uint8_t* DefragmentResponse::_InternalSerialize(
+            ::uint8_t* target,
+            ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+          const DefragmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(serialize_to_array_start:Proyecto1Datos2.DefragmentResponse)
+          ::uint32_t cached_has_bits = 0;
+          (void)cached_has_bits;
+
+          // string message = 1;
+          if (!this_._internal_message().empty()) {
+            const std::string& _s = this_._internal_message();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "Proyecto1Datos2.DefragmentResponse.message");
+            target = stream->WriteStringMaybeAliased(1, _s, target);
+          }
+
+          if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+            target =
+                ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+                    this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+          }
+          // @@protoc_insertion_point(serialize_to_array_end:Proyecto1Datos2.DefragmentResponse)
+          return target;
+        }
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        ::size_t DefragmentResponse::ByteSizeLong(const MessageLite& base) {
+          const DefragmentResponse& this_ = static_cast<const DefragmentResponse&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+        ::size_t DefragmentResponse::ByteSizeLong() const {
+          const DefragmentResponse& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          // @@protoc_insertion_point(message_byte_size_start:Proyecto1Datos2.DefragmentResponse)
+          ::size_t total_size = 0;
+
+          ::uint32_t cached_has_bits = 0;
+          // Prevent compiler warnings about cached_has_bits being unused
+          (void)cached_has_bits;
+
+           {
+            // string message = 1;
+            if (!this_._internal_message().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_message());
+            }
+          }
+          return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                                     &this_._impl_._cached_size_);
+        }
+
+void DefragmentResponse::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<DefragmentResponse*>(&to_msg);
+  auto& from = static_cast<const DefragmentResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:Proyecto1Datos2.DefragmentResponse)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_message().empty()) {
+    _this->_internal_set_message(from._internal_message());
+  }
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DefragmentResponse::CopyFrom(const DefragmentResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:Proyecto1Datos2.DefragmentResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void DefragmentResponse::InternalSwap(DefragmentResponse* PROTOBUF_RESTRICT other) {
+  using std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.message_, &other->_impl_.message_, arena);
+}
+
+::google::protobuf::Metadata DefragmentResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

@@ -29,6 +29,7 @@ static const char* MemoryManager_method_names[] = {
   "/Proyecto1Datos2.MemoryManager/DecreaseRefCount",
   "/Proyecto1Datos2.MemoryManager/Free",
   "/Proyecto1Datos2.MemoryManager/GetReferenceCount",
+  "/Proyecto1Datos2.MemoryManager/Defragment",
 };
 
 std::unique_ptr< MemoryManager::Stub> MemoryManager::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -45,6 +46,7 @@ MemoryManager::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& chan
   , rpcmethod_DecreaseRefCount_(MemoryManager_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Free_(MemoryManager_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetReferenceCount_(MemoryManager_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Defragment_(MemoryManager_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status MemoryManager::Stub::Create(::grpc::ClientContext* context, const ::Proyecto1Datos2::CreateRequest& request, ::Proyecto1Datos2::CreateResponse* response) {
@@ -208,6 +210,29 @@ void MemoryManager::Stub::async::GetReferenceCount(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::Status MemoryManager::Stub::Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::Proyecto1Datos2::DefragmentResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Defragment_, context, request, response);
+}
+
+void MemoryManager::Stub::async::Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Defragment_, context, request, response, std::move(f));
+}
+
+void MemoryManager::Stub::async::Defragment(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Defragment_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>* MemoryManager::Stub::PrepareAsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Proyecto1Datos2::DefragmentResponse, ::Proyecto1Datos2::DefragmentRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Defragment_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Proyecto1Datos2::DefragmentResponse>* MemoryManager::Stub::AsyncDefragmentRaw(::grpc::ClientContext* context, const ::Proyecto1Datos2::DefragmentRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncDefragmentRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 MemoryManager::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       MemoryManager_method_names[0],
@@ -279,6 +304,16 @@ MemoryManager::Service::Service() {
              ::Proyecto1Datos2::RefCountResponse* resp) {
                return service->GetReferenceCount(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      MemoryManager_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< MemoryManager::Service, ::Proyecto1Datos2::DefragmentRequest, ::Proyecto1Datos2::DefragmentResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](MemoryManager::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Proyecto1Datos2::DefragmentRequest* req,
+             ::Proyecto1Datos2::DefragmentResponse* resp) {
+               return service->Defragment(ctx, req, resp);
+             }, this)));
 }
 
 MemoryManager::Service::~Service() {
@@ -327,6 +362,13 @@ MemoryManager::Service::~Service() {
 }
 
 ::grpc::Status MemoryManager::Service::GetReferenceCount(::grpc::ServerContext* context, const ::Proyecto1Datos2::RefCountRequest* request, ::Proyecto1Datos2::RefCountResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status MemoryManager::Service::Defragment(::grpc::ServerContext* context, const ::Proyecto1Datos2::DefragmentRequest* request, ::Proyecto1Datos2::DefragmentResponse* response) {
   (void) context;
   (void) request;
   (void) response;
