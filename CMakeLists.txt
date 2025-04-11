@@ -56,14 +56,12 @@ add_executable(mem-mgr
         Test/test_memory_manager.h
         Test/test_mpointers.cpp
         Test/test_mpointers.h
-        Server/Mpointers_lib/MPointer.cpp
-        Server/Mpointers_lib/MPointer.h
         Server/Memory_manager/GarbageCollector.cpp
         Server/Memory_manager/GarbageCollector.h
         Server/Memory_manager/MemoryBlock.cpp
         Server/Memory_manager/MemoryBlock.h
-        Server/Memory_manager/MemoryMap.cpp 
-        Server/Memory_manager/MemoryMap.h 
+        Server/Memory_manager/MemoryMap.cpp
+        Server/Memory_manager/MemoryMap.h
         Server/Memory_manager/MemoryManager.cpp
         Server/Memory_manager/MemoryManager.h
         Server/mainS.cpp
@@ -76,5 +74,7 @@ add_executable(client
         Client/mainC.cpp
         proto/GRPC-Memorymanager.pb.cc
         proto/GRPC-Memorymanager.grpc.pb.cc
+        Client/Mpointers_lib/Mpointer.h
+        Client/Mpointers_lib/Mpointer.cpp
 )
 target_link_libraries(client memory_proto gRPC::grpc++ Threads::Threads)
