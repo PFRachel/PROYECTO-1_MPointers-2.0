@@ -98,7 +98,7 @@ T MPointer<T>::fromVariant(const std::variant<int, float, std::string>& value) {
             return std::get<std::string>(value);
         }
     } else if constexpr (std::is_integral_v<T>) {
-        // Convertir int a otros tipos integrales
+        // Convertir int
         if (std::holds_alternative<int>(value)) {
             return static_cast<T>(std::get<int>(value));
         }
@@ -115,7 +115,7 @@ T MPointer<T>::fromVariant(const std::variant<int, float, std::string>& value) {
     throw std::runtime_error("Error de tipo en recuperación de valor MPointer");
 }
 
-// Modificar el método New() para soportar más tipos
+// Modificar el metodo New() para soportar más tipos
 template <typename T>
 MPointer<T> MPointer<T>::New() {
     if (!initialized) {
