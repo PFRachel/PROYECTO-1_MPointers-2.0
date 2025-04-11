@@ -326,11 +326,9 @@ MPointer<T>& MPointer<T>::operator=(const MPointer<T>& other) {
                 grpc::Status status = stub_->DecreaseRefCount(&context, request, &response);
 
                 if (status.ok()) {
-                    std::cout << "Contador de referencias para ID " << memoryId << " decrementado a "
-                              << response.count() << std::endl;
+                    std::cout << "" << std::endl;
                 } else {
-                    std::cerr << "Error al decrementar contador de referencias para ID " << memoryId
-                              << ": " << status.error_message() << std::endl;
+                    std::cerr << "Error al decrementar contador de referencias para ID " << std::endl;
                 }
             } catch (const std::exception& e) {
                 std::cerr << "Excepcion en operator=: " << e.what() << std::endl;

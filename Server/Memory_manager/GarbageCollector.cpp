@@ -33,6 +33,7 @@ void GarbageCollector::collectGarbage() {
 
         auto allEntries = memoryManager.getMemoryMap().getAllEntries();
         std::cout << "Total de entradas: " << allEntries.size() << std::endl;
+        bool anyFreed = false;  // Declaramos la variable para verificar si se liberó alguna memoria
 
         for (const auto& [id, entry] : allEntries) {
             std::cout << "Procesando ID: " << id
@@ -43,11 +44,20 @@ void GarbageCollector::collectGarbage() {
                 std::cout << "Intentando liberar ID: " << id << std::endl;
                 if (memoryManager.Free(id)) {
                     std::cout << "Liberado exitosamente ID: " << id << std::endl;
+                    anyFreed = true;  // Si se libera memoria, cambiamos el valor de anyFreed
+
                 } else {
                     std::cerr << "Error al liberar ID: " << id << std::endl;
                 }
             }
         }
+        if (anyFreed) {
+            std::cout << "[GarbageCollector] Intentando desfragmentar memoria..." << std::endl;
+            memoryManager.Defragment();  // Llamamos a Defragment sin capturar su retorno
+            std::cout << "[GarbageCollector] Desfragmentacion completada." << std::endl;
+        }
+
+
         std::cout << "=== [GarbageCollector] Ciclo completado ===\n" << std::endl;
     }
 }

@@ -6,6 +6,8 @@
 #include <ctime>
 #include <mutex>
 #include <memory>
+#include <algorithm>  // Para std::sort
+
 MemoryManager::MemoryManager(size_t memsize) : memoryBlock(memsize) {
     std::cout << "Memory Manager inicializado con " << memsize << " bytes" << std::endl;
 }
@@ -192,6 +194,54 @@ int MemoryManager::getReferenceCount(int id) const {
     }
     return -1;  // ID no encontrado
 }
+//========DESFRAGMENTACION DE MEMORIA=========
+void MemoryManager::Defragment(){
+    std::lock_guard<std::mutex> lock(memoryMutex);
+
+    struct EntryMoveInfo {
+        int id;
+        void* originalPointer;
+        size_t size;
+    };
+
+    std::vector<EntryMoveInfo> entries;
+
+    for (const auto& [id, entry] : memoryMap.getAllEntries()) {
+        if (entry.isAllocated && entry.blockPointer) {
+            entries.push_back({id, entry.blockPointer, entry.size});
+        }
+    }
+
+    std::sort(entries.begin(), entries.end(), [](const EntryMoveInfo& a, const EntryMoveInfo& b) {
+        return a.originalPointer < b.originalPointer;
+    });
+
+    char* basePtr = static_cast<char*>(memoryBlock.getBaseAddress());
+    char* moveTo = basePtr;
+
+    for (const auto& entryInfo : entries) {
+        char* oldPtr = static_cast<char*>(entryInfo.originalPointer);
+        if (oldPtr != moveTo) {
+            std::memmove(moveTo, oldPtr, entryInfo.size);
+            // ← Aquí recuperamos el entry
+            MemoryMapEntry* entry = memoryMap.getEntry(entryInfo.id);
+            if (entry) {
+                std::cout << "Tipo: " << entry->type
+                          << " - El dato asignado en " << static_cast<void*>(oldPtr)
+                          << ", ha sido liberado y reasignado a " << static_cast<void*>(moveTo)
+                          << std::endl;
+            }
+            memoryMap.setBlockPointer(entryInfo.id, moveTo);  // Actualiza el puntero
+        }
+        moveTo += entryInfo.size;
+    }
+
+    size_t usedBytes = moveTo - basePtr;
+    memoryBlock.updateNextAvailableOffset(usedBytes);  // actualiza el offset
+
+    std::cout << "[MemoryManager] Desfragmentacion completa. Memoria utilizada: "
+              << usedBytes << " / " << memoryBlock.getTotalSize() << " bytes.\n";
+}
 
 //====================================
 
@@ -222,6 +272,5 @@ void MemoryManager::printMemoryState() {
         std::cout << std::endl;
     }
 }
-
 
 

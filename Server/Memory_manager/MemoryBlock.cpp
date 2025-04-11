@@ -34,7 +34,11 @@ void* MemoryBlock::allocate(size_t size) {
 
     return blockAddress;
 }
-//----------------------------------------
+//-------------DESFRAGMENTACION-----------------------
+void MemoryBlock::updateNextAvailableOffset(size_t usedBytes) {
+    nextAvailableOffset = usedBytes;
+}
+
 //--------------------------
 void MemoryBlock::deallocate(void* address, size_t size) {
     if (address) {
