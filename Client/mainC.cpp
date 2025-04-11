@@ -198,7 +198,7 @@ std::string parseStringValue(const std::string& s) {
 // Función para obtener el tamaño de un tipo
 size_t getSizeOfType(const std::string& type) {
     if (type == "int") return sizeof(int);
-    if (type == "float") return sizeof(float);
+    if (type == "float") return sizeof(float); //Solo funcionan int, float, char, string
     if (type == "double") return sizeof(double);
     if (type == "char") return sizeof(char);
     if (type == "bool") return sizeof(bool);
